@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>The Ledger — Anwita D Pillai</title>
+  <meta name="description" content="The Ledger — An archive of effort by Anwita D Pillai. Chronological record of wins, losses, pending pursuits, and marginalia." />
+
+  <!-- Google Fonts: Instrument Serif, Instrument Sans, JetBrains Mono, Anek Malayalam, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@300;400;600;700;800&family=Caveat:wght@400;600;700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient background glow & SVG grain overlay -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="grain-overlay" aria-hidden="true">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.05 0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+    </svg>
+  </div>
+
+  <!-- Left vertical scroll progress bar -->
+  <div class="scroll-progress-wrap" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+    <span class="scroll-progress-label">THE LEDGER</span>
+  </div>
+
+  <!-- Custom magnetic cursor -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       01 — THE COVER (Pinned viewport, mask wipe exit)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section sec-cover" id="cover">
+    <div class="cover-inner">
+      <!-- Meta Corners -->
+      <div class="cover-meta meta-tl" data-reveal>
+        <span class="meta-label">RECORD OF</span>
+        <span class="meta-val">ANWITA D PILLAI</span>
+      </div>
+      <div class="cover-meta meta-tr" data-reveal>
+        <span class="meta-label">LOCATION</span>
+        <span class="meta-val">KOCHI · KERALA</span>
+      </div>
+
+      <!-- Center Title Block -->
+      <div class="cover-center">
+        <div class="cover-accent-malayalam" data-reveal>ദി ലെഡ്ജർ</div>
+        <div class="cover-title-mask">
+          <h1 class="cover-title line-1">THE</h1>
+        </div>
+        <div class="cover-title-mask">
+          <h1 class="cover-title line-2">LEDGER</h1>
+        </div>
+        <div class="cover-rule-wrap">
+          <div class="cover-rule"></div>
+        </div>
+        <p class="cover-subtitle" data-reveal>An archive of effort</p>
+      </div>
+
+      <!-- Meta Bottom -->
+      <div class="cover-meta meta-bl" data-reveal>
+        <span class="meta-label">TIMELINE</span>
+        <span class="meta-val">2024 — 2026</span>
+      </div>
+      <div class="cover-meta meta-br" data-reveal>
+        <div class="scroll-cue">
+          <span class="scroll-cue-txt">scroll</span>
+          <span class="scroll-cue-arrow">↓</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       02 — THE NUMBERS (Pinned viewport, 4-stat ticker)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section sec-numbers" id="numbers">
+    <div class="numbers-pinned-container">
+      <div class="numbers-header-tag">02 / ARCHIVE METRICS</div>
+
+      <div class="stat-ticker-stage" id="statTickerStage">
+        <!-- Injected via JS: 4 slides (Entries, Wins, Pending, Losses) -->
+      </div>
+
+      <div class="numbers-controls">
+        <button class="ticker-nav-btn prev-btn" id="prevStatBtn" aria-label="Previous metric">◀</button>
+        <div class="ticker-indicators" id="tickerIndicators">
+          <!-- Step indicators e.g. 01 / 04 -->
+        </div>
+        <button class="ticker-nav-btn next-btn" id="nextStatBtn" aria-label="Next metric">▶</button>
+      </div>
+
+      <div class="numbers-progress-track">
+        <div class="numbers-progress-fill" id="numbersProgressFill"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       03 — THE RIDGE (Pinned 300vh mountain range scrub)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="sec-ridge-wrapper" id="ridgeWrapper">
+    <div class="ridge-sticky-viewport" id="ridgeSticky">
+      <div class="ridge-header">
+        <div class="ridge-title-group">
+          <span class="sec-tag">03 / THE RIDGE</span>
+          <h2 class="ridge-heading">The Elevation of Pursuit</h2>
+        </div>
+        <div class="ridge-legend">
+          <span class="legend-item"><span class="legend-dot win"></span> Wins & Peaks</span>
+          <span class="legend-item"><span class="legend-dot pending"></span> Pending Heights</span>
+          <span class="legend-item"><span class="legend-dot loss"></span> Valleys & Lessons</span>
+        </div>
+      </div>
+
+      <div class="ridge-canvas-container" id="ridgeCanvasContainer">
+        <!-- Parallax Layer 1: Sky atmosphere -->
+        <div class="ridge-sky-atmosphere" id="ridgeSky"></div>
+
+        <!-- Parallax Layer 2: Distant floating stars (Pending) -->
+        <div class="ridge-stars-layer" id="ridgeStarsLayer"></div>
+
+        <!-- SVG Mountain Ridge (Ghost + Main Ridge + Points) -->
+        <svg id="ridgeSvg" class="ridge-svg" viewBox="0 0 3200 800" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="ridgeMainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#C9971A" stop-opacity="0.32" />
+              <stop offset="40%" stop-color="#A84A28" stop-opacity="0.22" />
+              <stop offset="100%" stop-color="#0A0E0C" stop-opacity="0.95" />
+            </linearGradient>
+            <linearGradient id="ridgeGhostGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#5A7A63" stop-opacity="0.18" />
+              <stop offset="100%" stop-color="#0A0E0C" stop-opacity="0.8" />
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Dynamic SVG content rendered via JS -->
+        </svg>
+
+        <!-- Hover / Tap Marginalia Card -->
+        <div class="marginalia-card" id="marginaliaCard" aria-live="polite"></div>
+      </div>
+
+      <div class="ridge-timeline-axis">
+        <span class="axis-time start">2024 — BEGINNING</span>
+        <div class="axis-line"></div>
+        <span class="axis-time mid">2025 — MOMENTUM</span>
+        <div class="axis-line"></div>
+        <span class="axis-time end">2026 — PRESENT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       04 — THE CONSTELLATION (Pinned horizontal scroll for pending)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="sec-constellation-wrapper" id="constellationWrapper">
+    <div class="constellation-sticky-viewport" id="constellationSticky">
+      <div class="constellation-header">
+        <div class="constellation-title-group">
+          <span class="sec-tag">04 / THE CONSTELLATION</span>
+          <h2 class="constellation-heading">
+            PENDING <span class="constellation-count-tag" id="pendingCountBadge">15</span>
+          </h2>
+        </div>
+        <p class="constellation-lead">
+          Unanswered queries in the night sky. In flight, awaiting verdict.
+        </p>
+      </div>
+
+      <!-- Constellation background starry canvas / SVG lines -->
+      <svg class="constellation-bg-svg" id="constellationBgSvg" aria-hidden="true"></svg>
+
+      <!-- Horizontal Cards Track -->
+      <div class="constellation-track-wrap">
+        <div class="constellation-track" id="constellationTrack">
+          <!-- Pending Cards dynamically populated -->
+        </div>
+      </div>
+
+      <div class="constellation-footer">
+        <span class="constellation-scroll-hint">Horizontal orbit · Scroll to traverse</span>
+        <div class="constellation-dots" id="constellationDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       05 — THE STRATA (Losses as geological sediment layers)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section sec-strata" id="strata">
+    <div class="strata-container">
+      <div class="strata-header">
+        <div class="strata-title-group">
+          <span class="sec-tag">05 / THE STRATA</span>
+          <h2 class="strata-heading">
+            LOSSES <span class="strata-count-tag" id="lossesCountBadge">25</span>
+          </h2>
+        </div>
+        <p class="strata-lead">
+          Geological layers of rejection. Every failure deposits fertile soil; nothing is discarded.
+        </p>
+      </div>
+
+      <div class="strata-geology-column" id="strataGeologyColumn">
+        <!-- Strata layers injected dynamically: older losses at bedrock, milestone highlights with laterite stripes -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       06 — THE DOCUMENT (Interactive table & filters)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section sec-document" id="document">
+    <div class="document-container">
+      <div class="document-header">
+        <div class="document-title-group">
+          <span class="sec-tag">06 / THE DOCUMENT</span>
+          <h2 class="document-heading">The Complete Record</h2>
+          <p class="document-desc">The unbroken ledger. Filter by classification or search entries.</p>
+        </div>
+
+        <div class="document-controls">
+          <div class="document-search-box">
+            <input type="text" id="documentSearchInput" placeholder="Search entries, orgs, tags..." aria-label="Search ledger entries" />
+            <span class="search-icon" aria-hidden="true">⌕</span>
+          </div>
+
+          <div class="filter-pills-bar" id="documentFilterPills" role="toolbar" aria-label="Filter entries">
+            <!-- Filter buttons injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="document-table-wrapper">
+        <table class="ledger-table" id="documentTable">
+          <thead>
+            <tr>
+              <th class="col-date">Date</th>
+              <th class="col-entry">Entry & Details</th>
+              <th class="col-status">Status</th>
+              <th class="col-reward">Reward</th>
+            </tr>
+          </thead>
+          <tbody id="documentTableBody">
+            <!-- Dynamically populated rows with staggered reveal -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-empty-state" id="tableEmptyState" style="display: none;">
+        <p>No entries match the selected criteria.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       07 — THE CODA (Pinned finale & closing statement)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section sec-coda" id="coda">
+    <div class="coda-inner">
+      <div class="coda-accent-malayalam" data-coda-line>തുടരുന്നു</div>
+
+      <div class="coda-text-block">
+        <div class="coda-line" data-coda-word="The">The</div>
+        <div class="coda-line" data-coda-word="climb">climb</div>
+        <div class="coda-line highlight" data-coda-word="continues.">continues.</div>
+      </div>
+
+      <div class="coda-signature" data-coda-line>
+        <span class="coda-emdash">—</span> Anwita, 16
+      </div>
+
+      <div class="coda-meta" id="codaMeta" data-coda-line>
+        <!-- Injected from data.js: origin, last updated -->
+      </div>
+    </div>
+  </section>
+
+  <!-- External CDNs: GSAP 3.12.5, ScrollTrigger, Lenis 1.1.18 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- Data and Application Code -->
+  <script src="data.js"></script>
+  <script src="ledger.js"></script>
+</body>
+</html>
