@@ -6,4 +6,4 @@ The Ledger is a data visualization of every competition, fellowship, application
 
 Built with vanilla JavaScript, GSAP ScrollTrigger, and Lenis. The data lives in a single file (`data.js`), so the whole visualization updates when I add a new entry.
 
-**Live:** [link]
+**Live:** [Link](https://anwitadpillai.github.io/the-ledger/)
